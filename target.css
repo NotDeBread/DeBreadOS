@@ -1,0 +1,164 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+body {
+  margin: 0;
+  height: 100vh;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  overflow: hidden;
+  display: flex;
+  background-color: rgba(30, 30, 30, 0.9);
+}
+
+
+/* GAME */
+
+@font-face {
+  font-family: VCR_OSD;
+  src: url(media/fonts/VCR_OSD_MONO_1.001.ttf);
+}
+
+#ultrakillStyleContainer {
+  position: absolute;
+  right: 75px;
+  height: 100vh;
+  perspective: 1000px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-family: VCR_OSD;
+  pointer-events: none;
+  user-select: none;
+}
+
+#ultrakillStyle {
+  display: flex;
+  flex-direction: column;
+  height: 825px;
+  width: 395px;
+  gap: 10px;
+  transform: rotateY(-30deg);
+}
+
+#ultrakillStyle div {
+  backdrop-filter: blur(10px);
+  border-radius: 5px;
+}
+
+#ultrakillStyleRank {
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#ultrakillStyleRank img {
+  width: 100%;
+}
+
+#ultrakillStyleBar {
+  background-color: rgba(0, 0, 0, 0.75);
+  height: 25px;
+  overflow: hidden;
+}
+
+#ultrakillStyleBarOverlay {
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(white, rgb(200, 200, 200));
+}
+
+#ultrakillStyleLog {
+  background-color: rgba(0, 0, 0, 0.5);
+  /* height: 320px; */
+  height: 500px;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: start;
+  font-size: 40px;
+  line-height: 1.15;
+  overflow: hidden;
+}
+
+
+
+
+
+.target {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  outline: solid 5px rgb(0, 0, 0);
+  backdrop-filter: blur(10px);
+  transform: scale(100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  transition: scale ease-in 0.5s;
+  animation: targetIn 0.5s cubic-bezier(0,1,.5,1) 1 forwards;
+}
+
+.target:hover  {
+  outline: solid 5px white;
+}
+
+@keyframes targetIn {
+  from {
+    transform: scale(0);
+  }
+}
+
+@keyframes targetHit {
+  to {
+    transform: rotateY(720deg) rotateZ(180deg);
+  }
+}
+
+/* .innerTarget0 {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.innerTarget1 {
+  width: 6px;
+  height: 6px;
+  background-color: black;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.innerTarget2 {
+  width: 1px;
+  height: 1px;
+  background-color: white;
+  pointer-events: none;
+} */
+
+.stylePopup {
+  position: absolute;
+  font-weight: 700;
+  font-size: 1.25em;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0px 0px 5px black);
+  animation: stylePopup 2s ease-out 1 forwards;
+}
+
+@keyframes stylePopup {
+  to {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+}

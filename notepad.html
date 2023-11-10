@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer Window</title>
+    <link rel="stylesheet" href="notepad.css">
+</head>
+
+<body>
+    <div id="viewMenuContainer">
+        <div id="viewMenu">
+            <div class="viewMenuHeader">
+                <span style="font-size: 1.25em; font-weight: 700;">Notepad view</span>
+                <div title="Close view menu (esc)" onclick="toggleViewMenu()"><img src="media/glyphs/close.png"></div>
+            </div>
+            <div class="viewSetting">
+                <span id="textSizeDisplay">Text size: 1em</span>
+                <input type="range" min="0.5" max="2" step="0.1" value="1" id="textSizeInput">
+            </div>
+            <div class="viewSetting">
+                <span id="textWeightDisplay">Text weight: 500</span>
+                <input type="range" min="100" max="900" step="100" value="500" id="textWeightInput">
+            </div>
+        </div>
+    </div>
+    <div class="navbar">
+        <button onclick="downloadFile(prompt('Enter file name:'))">Save</button>
+        <div class="buttonDivider"></div>
+        <input id="fileInput" type="file" accept=".txt" style="display: none;">
+        <label for="fileInput">Open</label>
+        <div class="buttonDivider"></div>
+        <button onclick="toggleViewMenu()">View</button>
+    </div>
+    <textarea id="notepad"></textarea>
+
+
+    <script src="notepad.js"></script>
+    <script src="DeBread.js"></script>
+</body>
+
+</html>

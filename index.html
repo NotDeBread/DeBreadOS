@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="desktop.css">
+    <link rel="stylesheet" href="taskBar.css">
+    <link rel="stylesheet" href="target.css">
+    <title>DeBreadOS</title>
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="DeBread's Epic Website">
+    <meta name="description" content="Debread's super epic and amazing website.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://notdebread.github.io">
+    <meta property="og:title" content="DeBread's Epic Website">
+    <meta property="og:description" content="Debread's super epic and amazing website.">
+    <meta property="og:image" content="https://cdn.discordapp.com/attachments/805608363291181068/1093677936416149584/FoxBeeg.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://notdebread.github.io">
+    <meta property="twitter:title" content="DeBread's Epic Website">
+    <meta property="twitter:description" content="Debread's super epic and amazing website.">
+    <meta property="twitter:image" content="https://cdn.discordapp.com/attachments/805608363291181068/1093677936416149584/FoxBeeg.png">
+</head>
+
+<body>
+    <div id="loadingScreen">
+        <img src="media/OSLogo.png">
+        <div style="text-align: center;">
+            <span id="loadingScreenText">LOADING...</span><br>
+            <span id="loadingScreenBar">[--------------------]</span><br>
+            <span id="loadingScreenSplash"></span>
+        </div>
+        <a href="/mobile" style="position: absolute; left: 20px; bottom: 20px;">Open simple page...</a>
+    </div>
+    <div id="startupScreen">
+        <img id="startupImg">
+        <span id="startupText">Let's get things ready for you.</span>
+        <input id="startupInput" placeholder="Name">
+        <span id="startupError"></span>
+    </div>
+    <div id="appGallery">
+        <div id="innerAppGallery">
+            <div class="app">
+                <img src="media/apps/winnieAccumulator.png">
+                <span>Winnie Accumulator</span>
+            </div>
+        </div>
+    </div>
+    <div id="desktop">
+        <em style="position: absolute; left: 10px; top: 10px; opacity: 0.5; font-weight: 700; font-size: 2em;">BETA</em>
+        <!-- <button onclick="getStyle(800, 'BALLING x69', 'rgb(0, 255, 0)')">BALL</button>
+        <button onclick="getStyle(100, 'OBLITERATED', 'rgb(0, 255, 255)')">OBLITERATE</button>
+        <button onclick="getStyle(50, 'DEBREADED', 'rgb(255, 0, 0)')">DEBREAD</button>
+        <button onclick="getStyle(10, 'SLAPPED')">SLAP</button>
+        <button onclick="loseStyle(25)">LOSE STYLE</button>
+        <button onclick="loseStyle(50)">LOSE STYLE</button>
+        <button onclick="style = 0; currentRank = 0">RESET</button>
+        <button onclick="startTargets()">START</button> -->
+        <div id="ultrakillStyleContainer">
+            <div id="ultrakillStyle">
+                <div id="ultrakillStyleRank">
+                    <img src="media/ultrakillRanks/RankU.png" id="ultrakillRank">
+                </div>
+                <div id="ultrakillStyleBar">
+                    <div id="ultrakillStyleBarOverlay">
+                        <div id="ultrakillStyleBarOverlayShadow"></div>
+                    </div>
+                </div>
+                <div id="ultrakillStyleLog">
+                    <!-- <span>+ EXPLODED</span>
+                    <span>+ FIREWORKS</span>
+                    <span>+ MULTIKILL x5</span>
+                    <span>+ BALLIN</span>
+                    <span>+ DEBREADED</span>
+                    <span>+ ULTRAKILLED</span> -->
+                </div>
+            </div>
+        </div>
+
+        <div id="contextMenu">
+            <div>Wowie!</div>
+            <div>this is super cool</div>
+            <div>and cool!</div>
+        </div>
+        <div id="timerContainer">
+            <!-- <div class="timer">
+                <div class="timeContainer">
+                    <span class="timeDisplay">0:00</span>
+                </div>
+                <div class="timerButtons">
+                    <div>⏹</div>
+                    <div>↺</div>
+                </div>
+            </div> -->
+        </div>
+        <!-- <button
+            onclick="createNoti('media/apps/messages.png', 'media/placeHolder/2.png', 'Messages', 'DeBread', 'Welcome to DeBreadOS! This is a super cool website I made to showcase my projects. There\'s also a lot of easter eggs hidden here. Have fun!',
+                () => {createWindow(apps.messages.name, apps.messages.size[0], apps.messages.size[1], apps.messages.open, apps.messages.color)})"
+            style="position: absolute; top: 0; right: 0;">
+
+            Create Noti</button> -->
+        <!-- <div class="window">
+            <div class="windowTitle">
+                <div>
+                    <span>Window Title</span>
+                </div>
+                <div class="windowButtons">
+                    <button class="windowFullscreen">□</button>
+                    <button class="windowClose">X</button>
+                </div>
+            </div>
+            <div class="setting">
+                <input type="checkbox">
+                <div class="settingInfo">
+                    <span>Always open outside iframes</span>
+                    <em>Instead of emulating websites inside of this website, it opens it in another tab.</em>
+                </div>
+            </div>
+            <div class="settingDivider"></div>
+            <div class="setting">
+                <input type="checkbox">
+                <div class="settingInfo">
+                    <span>Ignore loading screen</span>
+                    <em>Skips fake loading screen.</em>
+                </div>
+            </div>
+            <div class="settingDivider"></div>
+            <div class="setting">
+                <input type="checkbox">
+                <div class="settingInfo">
+                    <span>Another Example Setting</span>
+                    <em>This is a super cool example setting.</em>
+                </div>
+            </div>
+        </div> -->
+
+        <div id="notiContainer">
+
+        </div>
+
+        <div id="searchBarContainer">
+            <div id="searchBarAutocompleteContainer">
+
+            </div>
+            <input id="searchBar">
+        </div>
+        <div id="taskBar">
+            <div id="taskBarLeft">
+                <img src="media/icons/search.png" title="Search..." onclick="toggleSearchMenu()">
+                <img src="media/icons/appGallery.png" title="Open app gallery..." onclick="openAppGallery()">
+                <img src="media/icons/settings.png" title="Settings..."
+                    onclick="createWindow(apps.settings.name, apps.settings.size[0], apps.settings.size[1], apps.settings.open, apps.settings.color, 'settings')">
+                <div class="taskbarDivider"></div>
+                <div id="taskBarMain">
+
+                </div>
+                <div class="taskbarDivider"></div>
+            </div>
+            <div class="timeContainer">
+                <span id="timeDisplay">12:00 AM</span>
+                <span id="dateDisplay">12/8/07</span>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="DeBread.js"></script>
+    <script src="script.js"></script>
+    <script src="loadingScreen.js"></script>
+    <script src="startup.js"></script>
+    <script src="apps.js"></script>
+    <script src="desktop.js"></script>
+    <script src="taskBar.js"></script>
+    <!-- <script src="toys.js"></script> -->
+</body>
+
+</html>

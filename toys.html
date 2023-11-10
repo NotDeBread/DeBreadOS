@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toys Window</title>
+    <link rel="stylesheet" href="toys.css">
+</head>
+
+<body>
+    <div class="toy">
+        <div class="toyTitle">
+            <span>Create bouncing image</span>
+        </div>
+        <div class="innerToy">
+            <section class="toyConfig">
+                <div style="display: flex; align-items: center; gap: 5px;">
+                    <img src="media/glyphs/config.png" class="subToyGlyph">
+                    <span class="toyConfigTitle">Config</span>
+                </div>
+                <div class="innerToyConfig">
+                    <div class="inputRow">
+                        <input placeholder="Image/GIF URL" id="bouncingImageInput">
+                    </div>
+                    <div class="inputRow">
+                        <input placeholder="Scale(px)" id="bouncingImageWidthInput">
+                        <input placeholder="Horizontal Speed (px/10ms)" id="bouncingImageSpeed0Input">
+                        <input placeholder="Vertical Speed (px/10ms)" id="bouncingImageSpeed1Input">
+                    </div>
+                    <div class="checkboxContainer">
+                        <input type="checkbox" id="bouncingImageColorInput">
+                        <div>
+                            <span>Change color every bounce</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="toyPreview">
+                <div style="display: flex; align-items: center; gap: 5px;">
+                    <img src="media/glyphs/preview.png" class="subToyGlyph">
+                    <span>Preview</span>
+                </div>
+                <div class="innerToyPreview" id="bouncingImagePreviewContainer">
+                    <img id="bouncingImagePreview" src="media/placeHolder/2.png">
+                </div>
+            </section>
+        </div>
+        <button class="toyCreateButton" onclick="
+            parent.createBouncingImage(
+                doge('bouncingImageInput').value,
+                doge('bouncingImageWidthInput').value + 'px',
+                [doge('bouncingImageSpeed0Input').value, doge('bouncingImageSpeed1Input').value],
+                doge('bouncingImageColorInput').checked
+            )
+        ">Create</button>
+    </div>
+    <em>More toys coming soon!</em>
+
+    <script src="DeBread.js"></script>
+    <script src="toys.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings Window</title>
+    <link rel="stylesheet" href="settings.css">
+</head>
+
+<body>
+    <section class="settingsTabs">
+        <div>
+            <div class="tab" onclick="switchMenu('system')">
+                <span id="tabLabel_system">System</span>
+            </div>
+            <div class="settingDivider" style="margin: 0px 5px; width: calc(100% - 10px);"></div>
+            <div class="tab" onclick="switchMenu('personalize')">
+                <span id="tabLabel_personalize">Personalize</span>
+            </div>
+            <div class="settingDivider" style="margin: 0px 5px; width: calc(100% - 10px);"></div>
+            <div class="tab" onclick="switchMenu('credits')">
+                <span id="tabLabel_credits">Credits</span>
+            </div>
+            <div class="settingDivider" style="margin: 0px 5px; width: calc(100% - 10px);"></div>
+            <div class="tab" onclick="switchMenu('info')">
+                <span id="tabLabel_info">Info</span>
+            </div>
+        </div>
+        <div>
+            <span class="tab" onclick="parent.window.open('mobile','_self')">Open Simple Page</span>
+            <div class="settingDivider" style="margin: 0px 5px; width: calc(100% - 10px);"></div>
+            <div class="profileTab" onclick="switchMenu('profile')">
+                <img src="media/placeHolder/2.png" id="tabLabel_profileImg">
+                <span id="tabLabel_profile">DeBread</span>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div id="menu_system">
+            <span class="settingMenuTitle">System</span>
+            <div class="setting">
+                <input type="checkbox" onclick="changeSetting('ignoreLoadingScreen')" id="ignoreLoadingScreenInput">
+                <div class="settingInfo">
+                    <span>Ignore loading screen</span>
+                    <em>Skips fake loading screen.</em>
+                </div>
+            </div>
+            <div class="settingDivider"></div>
+            <div class="setting">
+                <input type="checkbox" onclick="changeSetting('accurateTimers')" id="accurateTimersInput">
+                <div class="settingInfo">
+                    <span>Accurate Timers</span>
+                    <em>Makes timers more accurate at the cost of lag.</em>
+                </div>
+            </div>
+            <div class="settingDivider"></div>
+            <div class="setting">
+                <input type="checkbox" onclick="changeSetting('dockTaskbar'); parent.updateTaskbar()" id="dockTaskbarInput">
+                <div class="settingInfo">
+                    <span>Always dock taskbar</span>
+                    <em>Makes the taskbar have no margin; making it flush with the bottom of the screen.</em>
+                </div>
+            </div>
+            <div class="settingDivider"></div>
+            <div class="setting">
+                <input type="checkbox" onclick="changeSetting('windowTransparency'); parent.updateTaskbar()" id="windowTransparencyInput">
+                <div class="settingInfo">
+                    <span>Window Transparency</span>
+                    <em>Adds transparency to some windows.</em>
+                </div>
+            </div>
+            <div class="settingDivider"></div>
+            <div class="setting">
+                <input type="checkbox" onclick="changeSetting('windowPosLimits'); parent.updateTaskbar()" id="windowPosLimitsInput">
+                <div class="settingInfo">
+                    <span>Window Position Limits</span>
+                    <em>Makes it so windows cannot go offscreen.</em>
+                </div>
+            </div>
+            <div class="settingDivider"></div>
+            <div class="setting">
+                <input type="checkbox" onclick="changeSetting('holidayEffects'); parent.updateTaskbar()" id="holidayEffectsInput">
+                <div class="settingInfo">
+                    <span>Holiday Effects</span>
+                    <em>Creates snow particles during the holiday season.</em>
+                </div>
+            </div>
+            <div class="settingDivider"></div>
+            <div class="buttonRow">
+                <button onclick="parent.startupSequence()" class="settingButton">Redo Startup Sequence</button>
+                <button onclick="parent.deletesave()" class="settingButton">Delete Save</button>
+            </div>
+        </div>
+        <div id="menu_personalize">
+            <span class="settingMenuTitle">Personalize</span><br>
+
+            <div class="setting">
+                <span>Accent Color</span>
+                <input type="color" id="accentColorInput">
+            </div>
+            <div class="settingDivider"></div>
+            <div style="padding: 5px;">
+                <span>Background Image</span><br>
+                <div class="idkWhatToNameThis">
+                    <input type="text" placeholder="Image / GIF URL" id="backgroundImageInput">
+                    <button
+                        onclick="setSetting('backgroundImage', doge('backgroundImageInput').value); parent.updateBackgroundImage(); parent.save(); createSettingNoti('Background image set!')">Set
+                    </button>
+                </div>
+                <em style="font-size: 0.75em; color: grey;">Set as blank for default background image.</em>
+                <div class="setting">
+                    <input type="checkbox" onclick="changeSetting('strechWallpaper'); parent.updateBackgroundImage()" id="strechWallpaperInput">
+                    <div class="settingInfo">
+                        <span>Strech</span>
+                        <em>Streches the image to fit the viewport.</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="menu_credits">
+            <span class="settingMenuTitle">Credits</span><br>
+            <span>Nothing to see here really. I made it all lmao</span>
+        </div>
+        <div id="menu_profile">
+            <span class="settingMenuTitle">Profile</span>
+            <div class="profileContainer">
+                <img id="pfp" src="media/placeHolder/2.png">
+                <span id="name">DeBread</span>
+            </div>
+            <div class="buttonRow">
+                <button onclick="console.log(parent.getData()); createSettingNoti('Data logged!')">Log Data</button>
+            </div>
+        </div>
+        <div id="menu_info">
+            <span class="settingMenuTitle">Info</span><br>
+            <span>System version: BETA v0.00</span>
+        </div>
+    </section>
+
+    <div id="settingNotiContainer">
+        <!-- <div class="settingNoti">
+            <span>Wowie! This is a cool noti!</span>
+        </div> -->
+    </div>
+
+
+    <script src="DeBread.js"></script>
+    <script src="settings.js"></script>
+</body>
+
+</html>
