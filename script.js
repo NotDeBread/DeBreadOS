@@ -1,6 +1,6 @@
 //Check to see if user is on mobile
 if(window.innerWidth < 750) {
-    window.open('mobile/mobile.html', '_self')
+    window.open('mobile', '_self')
 }
 
 const data = JSON.parse(localStorage.getItem("DeBreadOS.Data")) ?? {
