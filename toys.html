@@ -31,7 +31,7 @@
                     <div class="checkboxContainer">
                         <input type="checkbox" id="bouncingImageColorInput">
                         <div>
-                            <span>Change color every bounce</span>
+                            <span>Change color on bounce</span>
                         </div>
                     </div>
                 </div>
@@ -55,7 +55,44 @@
             )
         ">Create</button>
     </div>
-    <em>More toys coming soon!</em>
+    <div class="toy">
+        <div class="toyTitle">
+            <span>Create Solitaire effect</span>
+        </div>
+        <div class="innerToy">
+            <section class="toyConfig">
+                <div style="display: flex; align-items: center; gap: 5px;">
+                    <img src="media/glyphs/config.png" class="subToyGlyph">
+                    <span class="toyConfigTitle">Config</span>
+                </div>
+                <div class="innerToyConfig">
+                    <div class="inputRow">
+                        <input placeholder="Image/GIF URL" id="solitaireInput">
+                    </div>
+                    <div class="inputRow">
+                        <input placeholder="Width(px)" id="solitaireWidthInput">
+                        <input placeholder="Height(px)" id="solitaireHeightInput">
+                    </div>
+                </div>
+            </section>
+            <section class="toyPreview">
+                <div style="display: flex; align-items: center; gap: 5px;">
+                    <img src="media/glyphs/preview.png" class="subToyGlyph">
+                    <span>Preview</span>
+                </div>
+                <div class="innerToyPreview" id="#">
+                    <span>The preview for this toy isn't available yet...</span>
+                    <!-- <img id="bouncingImagePreview" src="media/placeHolder/2.png"> -->
+                </div>
+            </section>
+        </div>
+        <button class="toyCreateButton" onclick="
+            parent.createSolitaireEffect(
+                doge('solitaireInput').value,
+                [doge('solitaireWidthInput').value, doge('solitaireHeightInput').value]
+            )
+        ">Create</button>
+    </div>
 
     <script src="DeBread.js"></script>
     <script src="toys.js"></script>

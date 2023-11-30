@@ -185,6 +185,7 @@
   left: 10px;
   display: flex;
   flex-direction: column;
+  z-index: 1001;
 }
 
 .timer {

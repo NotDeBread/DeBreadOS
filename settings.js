@@ -1,6 +1,7 @@
 function changeSetting(setting) {
     const childElement = doge(`${setting}Input`)
     parent.updateSetting(setting, childElement)
+    if(setting === 'holidayEffects') {parent.updateTaskbar()}
     parent.save()
 }
 
@@ -39,9 +40,20 @@ function switchMenu(selectedMenu) {
 switchMenu('system')
 
 doge('accentColorInput').addEventListener('change', () => {
-    parent.getData().settings.accentColor = doge('accentColorInput').value
+    parent.getData().settings.accentColor = DeBread.hexToRgb(doge('accentColorInput').value)
+    parent.updateTaskbar()
     createSettingNoti('Accent color set!')
 })
+
+doge('accentColorStrengthInput').addEventListener('change', updateAccentStrength)
+doge('accentColorStrengthInput').addEventListener('mousemove', updateAccentStrength)
+doge('accentColorStrengthInput').value = parent.getData().settings.taskbarAccentStrength
+
+function updateAccentStrength() {
+    parent.getData().settings.taskbarAccentStrength = doge('accentColorStrengthInput').value
+    doge('accentColorStrengthDisplay').innerText = doge('accentColorStrengthInput').value
+    parent.updateTaskbar()
+}
 
 function updateSettingsProfile() {
     doge('tabLabel_profile').innerText = parent.getData().user.name

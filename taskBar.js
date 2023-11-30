@@ -53,5 +53,15 @@ function updateTaskbar() {
         doge('taskBar').style.backgroundColor = 'rgba(0, 0, 0, 0.75)'
         doge('taskBar').style.backdropFilter = 'blur(10px)'
     }
+
+    if(data.settings.togglable.holidayEffects) {
+        doge('taskBar').style.boxShadow = `0px 0px 0px 2px rgba(255, 0, 0, ${data.settings.taskbarAccentStrength}), 0px 0px 0px 4px rgba(0, 0, 0, 0.75)`
+        setTimeout(() => {
+            doge('taskBar').style.boxShadow = `0px 0px 0px 2px rgba(0, 255, 0, ${data.settings.taskbarAccentStrength}), 0px 0px 0px 4px rgba(0, 0, 0, 0.75)`
+        }, 500);
+    } else {
+        doge('taskBar').style.boxShadow = `0px 0px 0px 2px rgba(${data.settings.accentColor}, ${data.settings.taskbarAccentStrength}), 0px 0px 0px 4px rgba(0, 0, 0, 0.75)`
+    }
 }
+setInterval(updateTaskbar, 1000)
 updateTaskbar()

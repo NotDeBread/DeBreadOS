@@ -3,7 +3,7 @@ if(window.innerWidth < 750) {
     window.open('mobile', '_self')
 }
 
-const data = JSON.parse(localStorage.getItem("DeBreadOS.Data")) ?? {
+const defaultData = {
     user: {
         name: '',
         pfp: '',
@@ -24,6 +24,7 @@ const data = JSON.parse(localStorage.getItem("DeBreadOS.Data")) ?? {
             windowPosLimits: true,
         },
         accentColor: '',
+        taskbarAccentStrength: 0.1,
         backgroundImage: ''
     },
     contacts: {
@@ -73,6 +74,63 @@ const data = JSON.parse(localStorage.getItem("DeBreadOS.Data")) ?? {
         }
     }
 }
+
+const data = JSON.parse(localStorage.getItem("DeBreadOS.Data")) ?? defaultData
+
+//-----Credit: @redjive2-----//
+
+/** 
+ * @param {object} a
+ * @param {object} b
+ * @param {string[]} k
+*/
+const read = (sym => function(a, b, ...k) {    
+    if (!k.some(it => typeof it !==  'string')) {
+        throw new Error("must provide only string or number keys instead of \n  " + k + "\n(read)")
+    }
+
+    let res = sym, fallback = sym,
+        pathA = a, pathB = b
+
+    for (const cur of k) {
+        res = pathA[cur] ?? sym
+        fallback = pathB[cur] ?? sym
+
+        pathA = res
+        pathB = fallback
+    } 
+
+    if (res !== sym) {
+        return res
+    } else if (fallback !== sym) {
+        return fallback
+    } else {
+        throw new Error("key path \n  " + k + "\nnot found in args (read)")
+    }
+})(Symbol())
+
+/**
+ * @param {object} a
+ * @param {object} b
+*/
+
+function fillInto(a, b) {    
+    if (typeof a !== 'object' || typeof b !== 'object') {
+        throw new Error("a and b must be object, but got " + String(a) + " and " + String(b) + " (merge)")
+    }
+ 
+    for (const k in b) {
+        if (typeof b[k] === 'object' && k in a) {
+            fillInto(a[k], b[k])
+        } else if (!(k in a)) {
+            a[k] = b[k]
+        }
+    }
+}
+// read(localStorage.getItem("WinnieAccumulatorSave"), defaultSave)
+fillInto(data, defaultData)
+
+//-------------------//
 
 function getData() {return data}
 
@@ -175,6 +233,8 @@ function updateBackgroundImage() {
     }
 } updateBackgroundImage()
 
+//DESKTOP TOYS
+
 function createBouncingImage(image, width, speedInput, color) {
     const logo = document.createElement('img')
     if(image) {logo.src = image} else {logo.src = 'media/placeholder/2.png'}
@@ -232,11 +292,83 @@ function createBouncingImage(image, width, speedInput, color) {
     logo.onmousedown = () => {doge('desktop').removeChild(logo)}
 }
 
-//DESKTOP SNOW
+function createSolitaireEffect(imgSrc = 'media/placeholder/2.png', size = [100, 100], pos = [DeBread.randomNum(250, window.innerWidth - size[0] - 250), DeBread.randomNum(0, window.innerHeight - 300)]) {
+    let imgInfo = {
+        pos: [pos[0], pos[1]],
+        vel: [DeBread.getRandomInArray([DeBread.randomNum(-20, -10), DeBread.randomNum(10, 20)]), DeBread.randomNum(-20, -30)],
+        retainImage: true
+    }
+
+    let movementInterval = setInterval(() => {        
+        const img = document.createElement('img')
+        if(imgSrc) {img.src = imgSrc} else {img.src = 'media/placeholder/2.png'}
+        if(!size[0]) {size[0] = 100}
+        if(!size[1]) {size[1] = 100}
+        img.width = size[0]
+        img.height = size[1]
+        img.style.position = 'absolute'
+        doge('desktop').appendChild(img)
+
+        let taskbarHeight
+        if(data.settings.togglable.dockTaskbar) {
+            taskbarHeight = 55
+        } else {
+            taskbarHeight = 65
+        }
+        
+        imgInfo.pos[0] += imgInfo.vel[0]
+        imgInfo.pos[1] += imgInfo.vel[1]
+        if(imgInfo.vel[0] > 2) {
+            imgInfo.vel[0] -= 0.01
+        } else if(imgInfo.vel[0] < -2) {
+            imgInfo.vel[0] += 0.01
+        }
+
+        if(imgInfo.retainImage) {
+            if(imgInfo.pos[0] < 0 || imgInfo.pos[0] > window.innerWidth - img.offsetWidth) {
+                imgInfo.vel[0] = -imgInfo.vel[0]
+            }
+        }
+
+        if(imgInfo.pos[1] < (window.innerHeight - img.offsetHeight - taskbarHeight)) {
+            imgInfo.vel[1]++
+        } else {
+            imgInfo.vel[1] = -imgInfo.vel[1] + 2
+            imgInfo.pos[1] = window.innerHeight - img.offsetHeight - taskbarHeight
+        }
+
+        img.style.left = imgInfo.pos[0] + 'px'
+        img.style.top = imgInfo.pos[1] + 'px'
+
+        setTimeout(() => {
+            doge('desktop').removeChild(img)
+        }, 7500);
+
+        if(imgInfo.pos[0] < -size || imgInfo.pos[0] > window.innerWidth + size) {
+            clearInterval(movementInterval)
+            console.log('Toy deleted.')
+        }
+
+        console.log(`
+            POS: X = ${imgInfo.pos[0]}, Y = ${imgInfo.pos[1]}
+            VEL: X = ${imgInfo.vel[0]}, Y = ${imgInfo.vel[1]}
+
+            RPOS: X = ${img.style.left}, ${img.style.top}
+        `)
+    }, 10);
+
+    setTimeout(() => {
+        imgInfo.retainImage = false
+    }, 15000);
+
+}
+
+//HOLIDAY EFFECTS SNOW
 const openingDate = new Date
 if((openingDate.getMonth() === 11) || (openingDate.getMonth() === 0)) {
     setInterval(() => {
         if(data.settings.togglable.holidayEffects) {
+            let randomSizeValue = DeBread.randomNum(5, 15)
             DeBread.createParticles(
                 doge('desktop'),
                 10,
@@ -244,7 +376,7 @@ if((openingDate.getMonth() === 11) || (openingDate.getMonth() === 0)) {
                 7500,
                 'linear',
                 [[0, window.innerWidth], [-10, -10]],
-                [[[10, 10], [10, 10]], [[0, 0], [0, 0]]],
+                [[[randomSizeValue, randomSizeValue], [randomSizeValue, randomSizeValue]], [[0, 0], [0, 0]]],
                 [[0, 0], [-90, 90]],
                 [[0, 0], [500, window.innerHeight]],
                 [[255, 255, 255], [255, 255, 255]],
