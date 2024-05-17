@@ -9,23 +9,16 @@
 </head>
 
 <body>
-    <div id="toolbar">
-        <div class="toolbarSection">
-            <div class="toolbarButton">
-                <input type="color" id="colorInput">
-            </div>
-            <div class="toolbarButton" onclick="changeBrush()">
-                <div id="brushDisplay"></div>
-            </div>
-        </div>
-        <div class="toolbarSection">
-            <div onclick="clearCanvas()" class="toolbarButton">
-                <span>Clear</span>
-            </div>
-        </div>
+    <div class="toolbar">
+
     </div>
-    <div id="brush"></div>
-    <div id="canvas"></div>
+    <div id="canvasContainer">
+        <canvas width="250" height="250"></canvas>
+    </div>
+
+    <div class="toolbar" style="height: 20px;">
+        <div id="cursorPos">[-, -]</div>
+    </div>
 
     <script src="DeBread.js"></script>
     <script src="sketchpad.js"></script>
